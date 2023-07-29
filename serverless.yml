@@ -1,0 +1,25 @@
+org: deepgohil
+app: ipd-news-scraper
+service: ipd-news-scraper
+
+frameworkVersion: '3'
+
+
+provider:
+  name: aws
+  runtime: python3.9
+
+functions:
+  rateHandler:
+    handler: handler.run
+    events:
+      # Invoke Lambda function every minute
+      - schedule: rate(1 minute)
+  cronHandler:
+    handler: handler.run
+    events:
+      # Invoke Lambda function every 2nd minute from Mon-Fri
+      - schedule: cron(0/2 * ? * MON-SAT *)
+
+plugins:
+  - serverless-pydeps
