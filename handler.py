@@ -142,7 +142,7 @@ def run(event, context):
         sort_keys=True,
         indent=4
     )
-    myclient = pymongo.MongoClient("mongodb+srv://ipd:virat@ipd.bervskx.mongodb.net/")
+    myclient = pymongo.MongoClient("")
     mydb = myclient["user"]
     mycol = mydb["news"]
 
