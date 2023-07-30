@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timezone, timedelta
 from bs4 import NavigableString, Comment
-
+import pymongo
 
 def str_is_set(string):
     """
@@ -142,6 +142,17 @@ def run(event, context):
         sort_keys=True,
         indent=4
     )
-    print(json_object)
-    # with open("sample.json", "w") as outfile:
-    #     outfile.write(json_object)
+    myclient = pymongo.MongoClient("mongodb+srv://ipd:virat@ipd.bervskx.mongodb.net/")
+    mydb = myclient["user"]
+    mycol = mydb["news"]
+
+
+
+
+    print(type(json_object))
+    d = json.loads(json_object)
+    print(type(d))
+    if isinstance(d, list):
+        mycol.insert_many(d) 
+    else:
+        mycol.insert_one(d)

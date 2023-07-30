@@ -1,21 +1,20 @@
-org: deepgohil
-app: ipd-news-scraper
-service: ipd-news-scraper
+
+service: scr
 
 frameworkVersion: '3'
 
 
 provider:
   name: aws
-  runtime: python3.9
+  runtime: python3.10
 
 functions:
-  rateHandler:
+  rate:
     handler: handler.run
     events:
       # Invoke Lambda function every minute
       - schedule: rate(1 minute)
-  cronHandler:
+  crone:
     handler: handler.run
     events:
       # Invoke Lambda function every 2nd minute from Mon-Fri
