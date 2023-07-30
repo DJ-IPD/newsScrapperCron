@@ -18,6 +18,6 @@ var/
 secrets.json
 ./lib/*
 index.html
-/node_modules
+node_modules/
 # Serverless directories
 .serverless
